@@ -3,7 +3,7 @@ import readline from 'readline-promise';
 import newGame from './game';
 import newPlayer from './player';
 
-const BOARD_SIZE = 3;
+const BOARD_SIZE = 4;
 
 const rl = readline.createInterface({
   input: process.stdin,

@@ -19,7 +19,7 @@ const newGame = (boardSize, player1, player2) => {
     newTurn: function(player, slot) {
       console.clear();
       if (!this.board.validSlot(slot)) {
-        console.log('Nice try, but this slot has already been played!');
+        console.log('Please, enter a valid slot that has not been played yet.');
         return false;
       }
 
