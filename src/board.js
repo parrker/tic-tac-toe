@@ -9,19 +9,30 @@ const createBoard = (size) => {
     rows: chunk(slots, size),
     size,
 
-    hasThreeInARow: function() {
+    hasThreeInOneOfTheRows: function() {
       const { slots } = this;
-
       return slots[0] === slots[3] && slots[3] === slots[6]
         || slots[1] === slots[4] && slots[4] === slots[7]
         || slots[2] === slots[5] && slots[5] === slots[8]
+    },
 
-        || slots[0] === slots[1] && slots[1] === slots[2]
+    hasThreeInOneOfTheColumns: function() {
+      const { slots } = this;
+      return slots[0] === slots[1] && slots[1] === slots[2]
         || slots[3] === slots[4] && slots[4] === slots[5]
-        || slots[6] === slots[7] && slots[7] === slots[8]
+        || slots[6] === slots[7] && slots[7] === slots[8];
+    },
 
-        || slots[0] === slots[4] && slots[4] === slots[8]
-        || slots[2] === slots[4] && slots[4] === slots[6]
+    hasThreeInOneOfTheDiagonals: function() {
+      const { slots } = this;
+      return slots[0] === slots[4] && slots[4] === slots[8]
+        || slots[2] === slots[4] && slots[4] === slots[6];
+    },
+
+    hasThreeInARow: function() {
+      return this.hasThreeInOneOfTheRows()
+        || this.hasThreeInOneOfTheColumns()
+        || this.hasThreeInOneOfTheDiagonals()
     },
 
     validSlot: function(slot) {
