@@ -1,4 +1,4 @@
-import { createBoard } from './board';
+import createBoard from './board';
 
 const newGame = (boardSize, player1, player2) => {
   const board = createBoard(boardSize);
@@ -6,6 +6,7 @@ const newGame = (boardSize, player1, player2) => {
   return {
     board,
     currentPlayer: player1,
+    turns: 0,
     players: [player1, player2],
     status: 'in_progress',
 
@@ -15,7 +16,7 @@ const newGame = (boardSize, player1, player2) => {
         : player1;
     },
 
-    newMove: function(player, slot) {
+    newTurn: function(player, slot) {
       console.clear();
       if (!this.board.validSlot(slot)) {
         console.log('Nice try, but this slot has already been played!');
@@ -29,7 +30,24 @@ const newGame = (boardSize, player1, player2) => {
         return true;
       }
 
+      this.turns++;
+
+      if (this.noMoreMoves()) {
+        this.status = 'draw';
+        return true;
+      }
+
       this.changePlayer();
+    },
+
+    noMoreMoves: function() {
+      return this.turns === boardSize * boardSize;
+    },
+
+    renderBoard: function() {
+      this.board.rows.forEach(row => {
+        console.log(row.join(' | '));
+      });
     },
   }
 };

@@ -1,6 +1,5 @@
 import readline from 'readline-promise';
 
-import renderBoard from './board';
 import newGame from './game';
 import newPlayer from './player';
 
@@ -26,22 +25,26 @@ const start = async (boardSize) => {
   const game = newGame(boardSize, player1, player2);
 
   console.clear();
-  renderBoard(game.board);
+  game.renderBoard();
 
   while (game.status === 'in_progress') {
     const { currentPlayer } = game;
     console.log(`${currentPlayer.name}, choose a box to place an '${currentPlayer.marker}' into:`);
     const slot = await rl.questionAsync('>> ');
 
-    game.newMove(currentPlayer, slot);
-
-    renderBoard(game.board);
+    game.newTurn(currentPlayer, slot);
+    game.renderBoard();
   }
 
-  return game.currentPlayer;
+  return game;
 };
 
-start(BOARD_SIZE).then((winner) => {
-  console.log(`Congratulations, ${winner.name}! You have won.`);
+start(BOARD_SIZE).then((game) => {
+  const winner = game.currentPlayer;
+  const message = (game.status === 'draw')
+    ? 'Game ended in a draw.'
+    : `Congratulations, ${winner.name}! You have won.`;
+
+  console.log(message);
   process.exit(0);
 });

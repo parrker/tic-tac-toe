@@ -1,7 +1,7 @@
 import chunk from 'lodash/chunk';
 import range from 'lodash/range';
 
-export const createBoard = (size) => {
+const createBoard = (size) => {
   const slots = range(1, size * size + 1);
 
   return {
@@ -39,10 +39,4 @@ export const createBoard = (size) => {
   };
 };
 
-export const renderBoard = (board) => {
-  board.rows.forEach(row => {
-    console.log(row.join(' | '));
-  });
-};
-
-export default renderBoard;
+export default createBoard;
