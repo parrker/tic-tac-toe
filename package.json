@@ -19,7 +19,6 @@
     "nodemon": "^1.18.9"
   },
   "dependencies": {
-    "dotenv": "^6.2.0",
     "lodash": "4.17.11",
     "readline-promise": "1.0.3"
   }
