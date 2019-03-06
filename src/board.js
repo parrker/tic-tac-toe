@@ -16,24 +16,42 @@ const createBoard = (size) => {
           return result;
         }
 
-        return slots[column] === slots[3 + column]
-          && slots[3 + column] === slots[6 + column]
+        const startingPoints = range(0, size - 2);
+
+        return startingPoints.reduce((columnResult, columnOffset) => {
+          if (columnResult === true) {
+            return columnResult;
+          }
+
+          const offset = column + columnOffset * size;
+
+          return slots[offset] === slots[offset + size]
+            && slots[offset + size] === slots[offset + size * 2];
+        }, false);
       }, false);
     },
 
     hasThreeInOneOfTheRows: function() {
       const { slots, size } = this;
-      const row = range(0, size);
+      const rows = range(0, size);
 
-      return row.reduce((result, row) => {
+      return rows.reduce((result, row) => {
         if (result === true) {
           return result;
         }
 
-        const offset = row * 3;
+        const startingPoints = range(0, size - 2);
 
-        return slots[offset] === slots[offset + 1]
-          && slots[offset + 1] === slots[offset + 2]
+        return startingPoints.reduce((rowResult, rowOffset) => {
+          if (rowResult === true) {
+            return rowResult;
+          }
+
+          const offset = row * size + rowOffset;
+
+          return slots[offset] === slots[offset + 1]
+            && slots[offset + 1] === slots[offset + 2];
+        }, false);
       }, false);
     },
 

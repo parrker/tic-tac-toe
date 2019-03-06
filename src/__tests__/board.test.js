@@ -3,7 +3,7 @@ import createBoard from '../board';
 describe('#createBoard', () => {
   let board;
 
-  describe('creates an object representing current a board 3 * 3 when size = 3', () => {
+  describe('creates an object representing a ic-tac-toe board 3 * 3 when size = 3', () => {
     beforeEach(() => {
       board = createBoard(3);
     });
@@ -121,6 +121,82 @@ describe('#createBoard', () => {
           board.set('3', 'O');
           board.set('5', 'O');
           board.set('7', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+      });
+    });
+  });
+
+  describe('creates an object representing a tic-tac-toe board 4 * 4 when size = 4', () => {
+    beforeEach(() => {
+      board = createBoard(4);
+    });
+
+    describe('#hasThreeInARow', () => {
+      describe('works for rows', () => {
+        it('returns true if there are three same markers in slots 1, 2, 3', () => {
+          board.set('1', 'X');
+          board.set('2', 'X');
+          board.set('3', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 2, 3, 4', () => {
+          board.set('2', 'X');
+          board.set('3', 'X');
+          board.set('4', 'X');
+
+          expect(board.hasThreeInOneOfTheRows()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 6, 7, 8', () => {
+          board.set('6', 'X');
+          board.set('7', 'X');
+          board.set('8', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 13, 14, 15', () => {
+          board.set('13', 'X');
+          board.set('14', 'X');
+          board.set('15', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+      });
+
+      describe('works for columns', () => {
+        it('returns true if there are three same markers in slots 1, 5, 9', () => {
+          board.set('1', 'X');
+          board.set('5', 'X');
+          board.set('9', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 5, 9, 13', () => {
+          board.set('5', 'X');
+          board.set('9', 'X');
+          board.set('13', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 6, 10, 14', () => {
+          board.set('6', 'X');
+          board.set('10', 'X');
+          board.set('14', 'X');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 7, 11, 15', () => {
+          board.set('7', 'X');
+          board.set('11', 'X');
+          board.set('15', 'X');
 
           expect(board.hasThreeInARow()).toBe(true);
         });
