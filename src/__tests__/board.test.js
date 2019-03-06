@@ -148,7 +148,7 @@ describe('#createBoard', () => {
           board.set('3', 'X');
           board.set('4', 'X');
 
-          expect(board.hasThreeInOneOfTheRows()).toBe(true);
+          expect(board.hasThreeInARow()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 6, 7, 8', () => {
