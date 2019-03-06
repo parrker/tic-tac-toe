@@ -56,68 +56,74 @@ describe('#createBoard', () => {
     });
 
     describe('#hasThreeInARow', () => {
-      it('returns true if there are three same markers in slots 1, 2, 3', () => {
-        board.set('1', 'X');
-        board.set('2', 'X');
-        board.set('3', 'X');
+      describe('works for rows', () => {
+        it('returns true if there are three same markers in slots 1, 2, 3', () => {
+          board.set('1', 'X');
+          board.set('2', 'X');
+          board.set('3', 'X');
 
-        expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 4, 5, 6', () => {
+          board.set('4', 'O');
+          board.set('5', 'O');
+          board.set('6', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 7, 8, 9', () => {
+          board.set('7', 'O');
+          board.set('8', 'O');
+          board.set('9', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
       });
 
-      it('returns true if there are three same markers in slots 4, 5, 6', () => {
-        board.set('4', 'O');
-        board.set('5', 'O');
-        board.set('6', 'O');
+      describe('works for columns', () => {
+        it('returns true if there are three same markers in slots 1, 4, 7', () => {
+          board.set('1', 'X');
+          board.set('4', 'X');
+          board.set('7', 'X');
 
-        expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 2, 5, 8', () => {
+          board.set('2', 'O');
+          board.set('5', 'O');
+          board.set('8', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 3, 6, 9', () => {
+          board.set('3', 'O');
+          board.set('6', 'O');
+          board.set('9', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
       });
 
-      it('returns true if there are three same markers in slots 7, 8, 9', () => {
-        board.set('7', 'O');
-        board.set('8', 'O');
-        board.set('9', 'O');
+      describe('works for diagonals', () => {
+        it('returns true if there are three same markers in slots 1, 5, 9', () => {
+          board.set('1', 'O');
+          board.set('5', 'O');
+          board.set('9', 'O');
 
-        expect(board.hasThreeInARow()).toBe(true);
-      });
+          expect(board.hasThreeInARow()).toBe(true);
+        });
 
-      it('returns true if there are three same markers in slots 1, 4, 7', () => {
-        board.set('1', 'X');
-        board.set('4', 'X');
-        board.set('7', 'X');
+        it('returns true if there are three same markers in slots 3, 5, 7', () => {
+          board.set('3', 'O');
+          board.set('5', 'O');
+          board.set('7', 'O');
 
-        expect(board.hasThreeInARow()).toBe(true);
-      });
-
-      it('returns true if there are three same markers in slots 2, 5, 8', () => {
-        board.set('2', 'O');
-        board.set('5', 'O');
-        board.set('8', 'O');
-
-        expect(board.hasThreeInARow()).toBe(true);
-      });
-
-      it('returns true if there are three same markers in slots 3, 6, 9', () => {
-        board.set('3', 'O');
-        board.set('6', 'O');
-        board.set('9', 'O');
-
-        expect(board.hasThreeInARow()).toBe(true);
-      });
-
-      it('returns true if there are three same markers in slots 1, 5, 9', () => {
-        board.set('1', 'O');
-        board.set('5', 'O');
-        board.set('9', 'O');
-
-        expect(board.hasThreeInARow()).toBe(true);
-      });
-
-      it('returns true if there are three same markers in slots 3, 5, 7', () => {
-        board.set('3', 'O');
-        board.set('5', 'O');
-        board.set('7', 'O');
-
-        expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasThreeInARow()).toBe(true);
+        });
       });
     });
   });

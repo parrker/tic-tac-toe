@@ -1,30 +1,82 @@
 import range from 'lodash/range';
 
 const createBoard = (size) => {
-  const slots = range(1, size * size + 1);
+  const slots = range(1, size * size + 1).map(String);
 
   return {
-    slots: slots.map(String),
+    slots,
     size,
 
-    hasThreeInOneOfTheRows: function() {
-      const { slots } = this;
-      return slots[0] === slots[3] && slots[3] === slots[6]
-        || slots[1] === slots[4] && slots[4] === slots[7]
-        || slots[2] === slots[5] && slots[5] === slots[8]
+    hasThreeInOneOfTheColumns: function() {
+      const { slots, size } = this;
+      const columns = range(0, size);
+
+      return columns.reduce((result, column) => {
+        if (result === true) {
+          return result;
+        }
+
+        return slots[column] === slots[3 + column]
+          && slots[3 + column] === slots[6 + column]
+      }, false);
     },
 
-    hasThreeInOneOfTheColumns: function() {
+    hasThreeInOneOfTheRows: function() {
+      const { slots, size } = this;
+      const row = range(0, size);
+
+      return row.reduce((result, row) => {
+        if (result === true) {
+          return result;
+        }
+
+        const offset = row * 3;
+
+        return slots[offset] === slots[offset + 1]
+          && slots[offset + 1] === slots[offset + 2]
+      }, false);
+    },
+
+    hasThreeInDiagonal: function() {
+      let slotIndex = 0;
+      let result = false;
       const { slots } = this;
-      return slots[0] === slots[1] && slots[1] === slots[2]
-        || slots[3] === slots[4] && slots[4] === slots[5]
-        || slots[6] === slots[7] && slots[7] === slots[8];
+
+      while (slotIndex < size * size) {
+        result = slots[slotIndex] === slots[slotIndex + size + 1]
+          && slots[slotIndex + size + 1] === slots[slotIndex + size * 2 + 2];
+
+        if (result === true) {
+          break;
+        }
+
+        slotIndex += size + 1;
+      }
+
+      return result;
+    },
+
+    hasThreeInAntiDiagonal: function() {
+      let slotIndex = 2;
+      let result = false;
+      const { slots } = this;
+
+      while (slotIndex < size * size) {
+        result = slots[slotIndex] === slots[slotIndex + size - 1]
+          && slots[slotIndex + size - 1] === slots[slotIndex + size * 2 - 2];
+
+        if (result === true) {
+          break;
+        }
+
+        slotIndex += size - 1;
+      }
+
+      return result;
     },
 
     hasThreeInOneOfTheDiagonals: function() {
-      const { slots } = this;
-      return slots[0] === slots[4] && slots[4] === slots[8]
-        || slots[2] === slots[4] && slots[4] === slots[6];
+      return this.hasThreeInDiagonal() || this.hasThreeInAntiDiagonal();
     },
 
     hasThreeInARow: function() {
