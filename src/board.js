@@ -18,8 +18,6 @@ const createBoard = (size) => {
           break;
         }
 
-        console.log(slots[slot], slots[slot + size], slots[slot + size * 2]);
-
         if (slots[slot] === slots[slot + size]
           && slots[slot + size] === slots[slot + size * 2]) {
           result = true;
