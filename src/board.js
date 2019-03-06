@@ -1,4 +1,3 @@
-import chunk from 'lodash/chunk';
 import range from 'lodash/range';
 
 const createBoard = (size) => {
@@ -6,7 +5,6 @@ const createBoard = (size) => {
 
   return {
     slots: slots.map(String),
-    rows: chunk(slots, size),
     size,
 
     hasThreeInOneOfTheRows: function() {
@@ -45,7 +43,6 @@ const createBoard = (size) => {
       newSlots[slot - 1] = marker;
 
       this.slots = newSlots;
-      this.rows = chunk(newSlots, size);
     },
   };
 };

@@ -1,3 +1,4 @@
+import chunk from 'lodash/chunk';
 import createBoard from './board';
 
 const newGame = (boardSize, player1, player2) => {
@@ -45,7 +46,9 @@ const newGame = (boardSize, player1, player2) => {
     },
 
     renderBoard: function() {
-      this.board.rows.forEach(row => {
+      const rows = chunk(this.board.slots, boardSize);
+
+      rows.forEach(row => {
         console.log(row.join(' | '));
       });
     },
