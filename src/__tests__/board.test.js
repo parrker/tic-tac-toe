@@ -201,6 +201,40 @@ describe('#createBoard', () => {
           expect(board.hasThreeInARow()).toBe(true);
         });
       });
+
+      describe('works for diagonals', () => {
+        it('returns true if there are three same markers in slots 1, 6, 11', () => {
+          board.set('1', 'O');
+          board.set('6', 'O');
+          board.set('11', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 6, 11, 16', () => {
+          board.set('6', 'O');
+          board.set('11', 'O');
+          board.set('16', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 4, 7, 10', () => {
+          board.set('4', 'O');
+          board.set('7', 'O');
+          board.set('10', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+
+        it('returns true if there are three same markers in slots 7, 10, 13', () => {
+          board.set('7', 'O');
+          board.set('10', 'O');
+          board.set('13', 'O');
+
+          expect(board.hasThreeInARow()).toBe(true);
+        });
+      });
     });
   });
 });

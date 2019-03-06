@@ -56,9 +56,9 @@ const createBoard = (size) => {
     },
 
     hasThreeInDiagonal: function() {
+      const { slots, size } = this;
       let slotIndex = 0;
       let result = false;
-      const { slots } = this;
 
       while (slotIndex < size * size) {
         result = slots[slotIndex] === slots[slotIndex + size + 1]
@@ -75,9 +75,9 @@ const createBoard = (size) => {
     },
 
     hasThreeInAntiDiagonal: function() {
-      let slotIndex = 2;
+      const { slots, size } = this;
+      let slotIndex = size - 1;
       let result = false;
-      const { slots } = this;
 
       while (slotIndex < size * size) {
         result = slots[slotIndex] === slots[slotIndex + size - 1]
