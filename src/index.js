@@ -14,7 +14,7 @@ const start = async () => {
   const player2Name = await answer('Enter name for Player 2:');
   const player2 = newPlayer(player2Name, 'O');
 
-  const game = newGame(boardSize, player1, player2);
+  const game = newGame(parseInt(boardSize, 10), player1, player2);
 
   console.clear();
   game.renderBoard();

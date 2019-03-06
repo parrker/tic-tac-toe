@@ -9,7 +9,7 @@ const createBoard = (size) => {
 
     hasThreeInARow: function() {
       let result = false;
-      const { slots } = this;
+      const { slots, size } = this;
 
       for (let slot = 0; slot < slots.length; slot++) {
         if (slots[slot] === slots[slot + 1]
@@ -17,6 +17,8 @@ const createBoard = (size) => {
           result = true;
           break;
         }
+
+        console.log(slots[slot], slots[slot + size], slots[slot + size * 2]);
 
         if (slots[slot] === slots[slot + size]
           && slots[slot + size] === slots[slot + size * 2]) {
