@@ -1,27 +1,17 @@
-import readline from 'readline-promise';
-
 import newGame from './game';
 import newPlayer from './player';
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: true,
-});
+import { answer } from './cli-utils';
 
 const start = async () => {
   console.clear();
 
   console.log('Welcome to the Tic-Tac-Toe!');
-  console.log('Please, enter the desired size of the board:');
-  const boardSize = await rl.questionAsync('>> ');
+  const boardSize = await answer('Please, enter the desired size of the board:');
 
-  console.log('Enter name for Player 1:');
-  const player1Name = await rl.questionAsync('>> ');
+  const player1Name = await answer('Enter name for Player 1:');
   const player1 = newPlayer(player1Name, 'X');
 
-  console.log('Enter name for Player 2:');
-  const player2Name = await rl.questionAsync('>> ');
+  const player2Name = await answer('Enter name for Player 2:');
   const player2 = newPlayer(player2Name, 'O');
 
   const game = newGame(boardSize, player1, player2);
@@ -31,8 +21,7 @@ const start = async () => {
 
   while (game.status === 'in_progress') {
     const { currentPlayer } = game;
-    console.log(`${currentPlayer.name}, choose a box to place an '${currentPlayer.marker}' into:`);
-    const slot = await rl.questionAsync('>> ');
+    const slot = await answer(`${currentPlayer.name}, choose a box to place an '${currentPlayer.marker}' into:`);
 
     game.newTurn(currentPlayer, slot);
     game.renderBoard();
