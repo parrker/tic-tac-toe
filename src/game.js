@@ -1,8 +1,9 @@
 import chunk from 'lodash/chunk';
-import createBoard from './board';
+import repeat from 'lodash/repeat';
+import newBoard from './board';
 
 const newGame = (boardSize, player1, player2) => {
-  const board = createBoard(boardSize);
+  const board = newBoard(boardSize);
 
   return {
     board,
@@ -26,7 +27,7 @@ const newGame = (boardSize, player1, player2) => {
 
       this.board.set(slot, player.marker);
 
-      if (this.board.hasThreeInARow()) {
+      if (this.board.hasWinner()) {
         this.status = 'over';
         return true;
       }
@@ -48,8 +49,10 @@ const newGame = (boardSize, player1, player2) => {
     renderBoard: function() {
       const rows = chunk(this.board.slots, boardSize);
 
-      rows.forEach(row => {
-        console.log(row.join(' | '));
+      rows.forEach(slots => {
+        const row = slots.join(' | ');
+        console.log(row);
+        console.log(repeat('-', row.length));
       });
     },
   }

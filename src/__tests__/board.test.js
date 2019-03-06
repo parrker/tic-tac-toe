@@ -1,11 +1,11 @@
-import createBoard from '../board';
+import newBoard from '../board';
 
-describe('#createBoard', () => {
+describe('#newBoard', () => {
   let board;
 
   describe('creates an object representing a ic-tac-toe board 3 * 3 when size = 3', () => {
     beforeEach(() => {
-      board = createBoard(3);
+      board = newBoard(3);
     });
 
     it('has size', () => {
@@ -55,14 +55,14 @@ describe('#createBoard', () => {
       });
     });
 
-    describe('#hasThreeInARow', () => {
+    describe('#hasWinner', () => {
       describe('works for rows', () => {
         it('returns true if there are three same markers in slots 1, 2, 3', () => {
           board.set('1', 'X');
           board.set('2', 'X');
           board.set('3', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 4, 5, 6', () => {
@@ -70,7 +70,7 @@ describe('#createBoard', () => {
           board.set('5', 'O');
           board.set('6', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 7, 8, 9', () => {
@@ -78,7 +78,7 @@ describe('#createBoard', () => {
           board.set('8', 'O');
           board.set('9', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
 
@@ -88,7 +88,7 @@ describe('#createBoard', () => {
           board.set('4', 'X');
           board.set('7', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 2, 5, 8', () => {
@@ -96,7 +96,7 @@ describe('#createBoard', () => {
           board.set('5', 'O');
           board.set('8', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 3, 6, 9', () => {
@@ -104,7 +104,7 @@ describe('#createBoard', () => {
           board.set('6', 'O');
           board.set('9', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
 
@@ -114,7 +114,7 @@ describe('#createBoard', () => {
           board.set('5', 'O');
           board.set('9', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 3, 5, 7', () => {
@@ -122,7 +122,7 @@ describe('#createBoard', () => {
           board.set('5', 'O');
           board.set('7', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
     });
@@ -130,17 +130,17 @@ describe('#createBoard', () => {
 
   describe('creates an object representing a tic-tac-toe board 4 * 4 when size = 4', () => {
     beforeEach(() => {
-      board = createBoard(4);
+      board = newBoard(4);
     });
 
-    describe('#hasThreeInARow', () => {
+    describe('#hasWinner', () => {
       describe('works for rows', () => {
         it('returns true if there are three same markers in slots 1, 2, 3', () => {
           board.set('1', 'X');
           board.set('2', 'X');
           board.set('3', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 2, 3, 4', () => {
@@ -148,7 +148,7 @@ describe('#createBoard', () => {
           board.set('3', 'X');
           board.set('4', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 6, 7, 8', () => {
@@ -156,7 +156,7 @@ describe('#createBoard', () => {
           board.set('7', 'X');
           board.set('8', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 13, 14, 15', () => {
@@ -164,7 +164,7 @@ describe('#createBoard', () => {
           board.set('14', 'X');
           board.set('15', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
 
@@ -174,7 +174,7 @@ describe('#createBoard', () => {
           board.set('5', 'X');
           board.set('9', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 5, 9, 13', () => {
@@ -182,7 +182,7 @@ describe('#createBoard', () => {
           board.set('9', 'X');
           board.set('13', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 6, 10, 14', () => {
@@ -190,7 +190,7 @@ describe('#createBoard', () => {
           board.set('10', 'X');
           board.set('14', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 7, 11, 15', () => {
@@ -198,7 +198,7 @@ describe('#createBoard', () => {
           board.set('11', 'X');
           board.set('15', 'X');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
 
@@ -208,7 +208,7 @@ describe('#createBoard', () => {
           board.set('6', 'O');
           board.set('11', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 6, 11, 16', () => {
@@ -216,7 +216,7 @@ describe('#createBoard', () => {
           board.set('11', 'O');
           board.set('16', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 4, 7, 10', () => {
@@ -224,7 +224,7 @@ describe('#createBoard', () => {
           board.set('7', 'O');
           board.set('10', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
 
         it('returns true if there are three same markers in slots 7, 10, 13', () => {
@@ -232,7 +232,7 @@ describe('#createBoard', () => {
           board.set('10', 'O');
           board.set('13', 'O');
 
-          expect(board.hasThreeInARow()).toBe(true);
+          expect(board.hasWinner()).toBe(true);
         });
       });
     });

@@ -1,13 +1,18 @@
+import pad from 'lodash/pad';
 import range from 'lodash/range';
 
 const createBoard = (size) => {
-  const slots = range(1, size * size + 1).map(String);
+  const padSlot = slot => pad(slot, cellLength, ' ');
+
+  const sizeSquared = size * size;
+  const cellLength = String(sizeSquared).length;
+  const slots = range(1, sizeSquared + 1).map(padSlot);
 
   return {
     slots,
     size,
 
-    hasThreeInARow: function() {
+    hasWinner: function() {
       let result = false;
       const { slots, size } = this;
 
@@ -41,12 +46,12 @@ const createBoard = (size) => {
     },
 
     validSlot: function(slot) {
-      return this.slots[slot - 1] === slot;
+      return this.slots[slot - 1].trim() === slot;
     },
 
     set: function(slot, marker) {
       const newSlots = [...this.slots];
-      newSlots[slot - 1] = marker;
+      newSlots[slot - 1] = padSlot(marker);
       this.slots = newSlots;
     },
   };
